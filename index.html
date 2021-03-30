@@ -122,7 +122,7 @@
     val.textContent = document.getElementById('myRange').value
     sliderValue.appendChild(val);
     
-    myRange.addEventListener('mousemove', () => {
+    myRange.addEventListener('mousemove', 'change', () => {
         val.textContent = document.getElementById('myRange').value
     });
 

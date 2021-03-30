@@ -1,0 +1,133 @@
+<html>
+
+<head>
+    <title>Page Title</title>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="etch.css">
+
+</head>
+
+<body>
+    <div id="buttons">
+        <button class="selectors" id="technicolor">TECHNICOLOR</button>
+        <button class="selectors" id="customColor">Custom Color</button>
+        <label for="favcolor"></label>
+        <input class="selectors" type="color" id="favcolor" name="favcolor" value="#0000FF">
+        <button class="selectors" id="randomColor">Random Color</button>
+    </div>
+    <div id="container">
+    </div>
+    <button class="selectors" id="clear">Clear/Resize</button>
+    <input type="range" min="1" max="64" value="16" class="slider" id="myRange">
+    <div id='sliderValue'>
+
+    </div>
+
+
+</body>
+<script>
+    let randomChoice = getRandomColor()
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+    dimension = 16
+    const container = document.getElementById("container");
+
+    function makeRows(rows, cols) {
+        container.style.setProperty('--grid-rows', rows);
+        container.style.setProperty('--grid-cols', cols);
+        for (c = 0; c < (rows * cols); c++) {
+            let cell = document.createElement("div");
+            container.appendChild(cell).className = "grid-item";
+
+        };
+    };
+
+    makeRows(dimension, dimension);
+
+    clear.addEventListener('click', () => {
+        function removeAllChildNodes(container) {
+            while (container.firstChild) {
+                container.removeChild(container.firstChild);
+            }
+        }
+
+        removeAllChildNodes(container);
+
+        dimension = document.getElementById('myRange').value
+
+        makeRows(dimension, dimension);
+        hoverColor()
+    });
+    function hoverColor() {
+        const colorChange = container.querySelectorAll('div');
+
+        colorChange.forEach((div) => {
+
+            div.addEventListener('mouseover', () => {
+                colorChoice = document.getElementById('favcolor').value
+                div.style.backgroundColor = colorChoice
+            });
+
+        });
+    }
+    function randomSelection() {
+        const colorChange = container.querySelectorAll('div');
+
+        colorChange.forEach((div) => {
+
+            div.addEventListener('mouseover', () => {
+                div.style.backgroundColor = randomChoice
+            });
+
+        });
+    }
+    function hoverRandom() {
+        const colorChange = container.querySelectorAll('div');
+
+        colorChange.forEach((div) => {
+
+            div.addEventListener('mouseover', () => {
+                div.style.backgroundColor = getRandomColor()
+            });
+
+        });
+    }
+    technicolor.addEventListener('click', () => {
+        hoverRandom()
+    });
+    customColor.addEventListener('click', () => {
+        hoverColor()
+    });
+    randomColor.addEventListener('click', () => {
+        randomSelection()
+    });
+    hoverColor()
+    function getRandomColor() {
+        var letters = '0123456789ABCDEF';
+        var color = '#';
+        for (var i = 0; i < 6; i++) {
+            color += letters[Math.floor(Math.random() * 16)];
+        }
+        return color;
+    }
+    const sliderValue = document.querySelector('#sliderValue')
+    const val = document.createElement('div');
+    val.classList.add('val')
+    val.textContent = document.getElementById('myRange').value
+    sliderValue.appendChild(val);
+    
+    myRange.addEventListener('mousemove', () => {
+        val.textContent = document.getElementById('myRange').value
+    });
+
+
+
+</script>
+
+</html>

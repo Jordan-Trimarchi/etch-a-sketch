@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <title>Page Title</title>
+    <title>Etch-a-Sketch</title>
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="etch.css">
 
@@ -105,7 +105,9 @@
         hoverColor()
     });
     randomColor.addEventListener('click', () => {
+        randomChoice = getRandomColor()
         randomSelection()
+        favcolor.value = randomChoice
     });
     hoverColor()
     function getRandomColor() {
@@ -124,6 +126,7 @@
     
     myRange.addEventListener('mousemove', () => {
         val.textContent = document.getElementById('myRange').value
+        
     });
     myRange.addEventListener('change', () => {
         val.textContent = document.getElementById('myRange').value

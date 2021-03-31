@@ -89,4 +89,9 @@
       font-style: bold;
      
     }
-    
+    #fillInstruction{
+      color: white;
+      font-size: large;
+      text-align: center;
+      margin-top: 20px;
+    }

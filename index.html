@@ -10,10 +10,12 @@
 <body>
     <div id="buttons">
         <button class="selectors" id="technicolor">TECHNICOLOR</button>
-        <button class="selectors" id="customColor">Custom Color</button>
         <label for="favcolor"></label>
         <input class="selectors" type="color" id="favcolor" name="favcolor" value="#0000FF">
         <button class="selectors" id="randomColor">Random Color</button>
+    </div>
+    <div id="fillInstruction">
+        Double Click To Fill Whole Grid
     </div>
     <div id="container">
     </div>
@@ -73,6 +75,9 @@
                 colorChoice = document.getElementById('favcolor').value
                 div.style.backgroundColor = colorChoice
             });
+            container.addEventListener('dblclick' , () => {
+                div.style.backgroundColor = colorChoice
+            });
 
         });
     }
@@ -84,6 +89,9 @@
             div.addEventListener('mouseover', () => {
                 div.style.backgroundColor = randomChoice
             });
+            container.addEventListener('dblclick' , () => {
+                div.style.backgroundColor = randomChoice
+            });
 
         });
     }
@@ -92,7 +100,10 @@
 
         colorChange.forEach((div) => {
 
-            div.addEventListener('mouseover', () => {
+            div.addEventListener('mouseover' , () => {
+                div.style.backgroundColor = getRandomColor()
+            });
+            container.addEventListener('dblclick' , () => {
                 div.style.backgroundColor = getRandomColor()
             });
 
@@ -101,7 +112,10 @@
     technicolor.addEventListener('click', () => {
         hoverRandom()
     });
-    customColor.addEventListener('click', () => {
+    favcolor.addEventListener('change', () => {
+        hoverColor()
+    });
+    favcolor.addEventListener('click', () => {
         hoverColor()
     });
     randomColor.addEventListener('click', () => {
@@ -123,10 +137,10 @@
     val.classList.add('val')
     val.textContent = document.getElementById('myRange').value
     sliderValue.appendChild(val);
-    
+
     myRange.addEventListener('mousemove', () => {
         val.textContent = document.getElementById('myRange').value
-        
+
     });
     myRange.addEventListener('change', () => {
         val.textContent = document.getElementById('myRange').value
